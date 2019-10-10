@@ -2,6 +2,7 @@ package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Reduce {
@@ -13,23 +14,56 @@ public class Reduce {
     }
 
     public int getMaximum() {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .mapToInt(Integer::intValue)
+                .reduce(Integer.MIN_VALUE, (max, num) -> {
+                   if(max < num)
+                       return num;
+                   return max;
+                });
     }
 
     public double getMinimum() {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .mapToInt(Integer::intValue)
+                .reduce(Integer.MAX_VALUE, (min, num) -> {
+                    if(min > num)
+                        return num;
+                    return min;
+                });
     }
 
     public double getAverage() {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .mapToDouble(Integer::doubleValue)
+                .reduce(0, Double::sum)
+                 / arrayList.size();
     }
 
     public double getOrderedMedian() {
-        throw new NotImplementedException();
+        int median = arrayList.size() / 2;
+
+//        if(isEven(arrayList.size())) {
+//            return arrayList.stream()
+//                .reduce(new ArrayList<Integer>(), (list, num) -> {
+//
+//                });
+//        }
+
+        return arrayList.get(median).doubleValue();
     }
 
     public int getFirstEven() {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .reduce(Integer.MAX_VALUE, (even, num) -> {
+                    if(even != Integer.MAX_VALUE)
+                        return even;
+
+                    if(isEven(num))
+                        return num;
+
+                    return even;
+                });
     }
 
     public int getIndexOfFirstEven() {
@@ -50,5 +84,9 @@ public class Reduce {
 
     public int getIndexOfLastOdd() {
         throw new NotImplementedException();
+    }
+
+    private boolean isEven(Integer num) {
+        return num%2==0;
     }
 }
