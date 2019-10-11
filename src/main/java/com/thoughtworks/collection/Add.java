@@ -51,7 +51,7 @@ public class Add {
 
     public int getSumOfProcessedOdds(List<Integer> arrayList) {
         return arrayList.stream()
-                .filter(num -> num%2==1)
+                .filter(num -> !isEven(num))
                 .map(num -> 3 * num + 5)
                 .mapToInt(Integer::intValue)
                 .sum();

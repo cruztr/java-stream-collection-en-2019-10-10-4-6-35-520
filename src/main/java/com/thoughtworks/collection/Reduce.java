@@ -16,21 +16,13 @@ public class Reduce {
     public int getMaximum() {
         return arrayList.stream()
                 .mapToInt(Integer::intValue)
-                .reduce(Integer.MIN_VALUE, (max, num) -> {
-                   if(max < num)
-                       return num;
-                   return max;
-                });
+                .reduce(Integer.MIN_VALUE, Math::max);
     }
 
     public double getMinimum() {
         return arrayList.stream()
                 .mapToInt(Integer::intValue)
-                .reduce(Integer.MAX_VALUE, (min, num) -> {
-                    if(min > num)
-                        return num;
-                    return min;
-                });
+                .reduce(Integer.MAX_VALUE, Math::min);
     }
 
     public double getAverage() {

@@ -34,7 +34,7 @@ public class CollectionOperator {
 
         Arrays.stream(array)
                 .filter(this::isEven)
-                .forEach(evenList::add);
+                .forEach(num -> evenList.add(num));
 
         return evenList;
     }
